@@ -1,8 +1,10 @@
 import React from 'react';
 import Particles from 'react-particles-js';
-import particleSettings from '../src/settings/particles.json';
+
 import Reveal from '../src/components/Reveal';
 import Slides from '../src/components/slides/Slides';
+
+import particleSettings from '../src/settings/particles.yaml';
 
 export default function App() {
   return (
