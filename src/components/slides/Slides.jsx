@@ -3,9 +3,9 @@ import Main from './Main';
 import MathPuzzle from './MathPuzzle';
 
 const Slides = {
-    Main,
-    Attendance,
-    MathPuzzle
+  Main,
+  Attendance,
+  MathPuzzle,
 };
 
 export default Slides;
