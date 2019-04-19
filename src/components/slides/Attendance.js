@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react"
 
-function Attendance() {
+const Attendance = () => {
   return (
     <section>
       <p>
@@ -8,7 +8,7 @@ function Attendance() {
       </p>
       <p>If this is your first time here, make sure to sign up online!</p>
     </section>
-  );
+  )
 }
 
-export default Attendance;
+export default Attendance

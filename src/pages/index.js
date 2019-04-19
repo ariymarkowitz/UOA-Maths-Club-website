@@ -1,10 +1,10 @@
-import React from 'react';
-import Particles from 'react-particles-js';
+import React from 'react'
+import Particles from 'react-particles-js'
 
-import Reveal from '../src/components/Reveal';
-import Slides from '../src/components/slides/Slides';
+import Reveal from '../components/Reveal'
+import Slides from '../components/slides/Slides'
 
-import particleSettings from '../src/settings/particles.yaml';
+import particleSettings from '../settings/particles.yaml'
 
 export default function App() {
   return (
@@ -14,7 +14,7 @@ export default function App() {
           style={{
             width: '100%',
             height: '100%',
-            position: 'absolute'
+            position: 'absolute',
           }}
           params={particleSettings}
         />
@@ -24,5 +24,5 @@ export default function App() {
       <Slides.Attendance />
       <Slides.MathPuzzle />
     </Reveal>
-  );
+  )
 }
