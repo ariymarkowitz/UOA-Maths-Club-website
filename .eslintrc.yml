@@ -23,5 +23,7 @@ rules:
   react-hooks/exhaustive-deps: warn
   react/jsx-filename-extension: off
   react/prop-types: off
-  semi: never
+  semi:
+    - warn
+    - never
   quotes: single
