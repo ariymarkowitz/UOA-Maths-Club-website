@@ -24,4 +24,5 @@ rules:
   comma-dangle: off
   no-unused-vars:
     - warn
-    - argsIgnorePattern: res|req|next
+    - argsIgnorePattern: res|req|next|^_
+  import/no-extraneous-dependencies: off
