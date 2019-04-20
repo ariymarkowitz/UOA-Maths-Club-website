@@ -1,23 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 
-import '../lib/reveal/css/reset.css'
-import '../lib/reveal/css/reveal.css'
-import '../lib/reveal/css/theme/sky.css'
+import '../lib/reveal/css/reset.css';
+import '../lib/reveal/css/reveal.scss';
+import '../lib/reveal/css/theme/source/sky.scss';
 
-export default function Reveal({ backgroundElement, children }) {
+const Reveal = ({ backgroundElement, children }) => {
   useEffect(() => {
-    import('../lib/reveal/js/reveal.js').then(module => {
-      const _Reveal = module.default
-      _Reveal.initialize({
+    import('../lib/reveal/js/reveal.js').then((module) => {
+      const RevealModule = module.default;
+      RevealModule.initialize({
         dependencies: [
           { src: 'plugin/markdown/marked.js' },
           { src: 'plugin/markdown/markdown.js' },
           { src: 'plugin/notes/notes.js', async: true },
           { src: 'plugin/highlight/highlight.js', async: true },
         ],
-      })
-    })
-  })
+      });
+    });
+  });
 
   return (
     <>
@@ -26,5 +26,7 @@ export default function Reveal({ backgroundElement, children }) {
         <div className="slides">{children}</div>
       </div>
     </>
-  )
-}
+  );
+};
+
+export default Reveal;

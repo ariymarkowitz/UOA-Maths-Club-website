@@ -12,18 +12,9 @@ parserOptions:
     jsx: true
   ecmaVersion: 2018
   sourceType: module
-  allowImportExportEverywhere: true
 plugins:
   - react
-  - react-hooks
 rules:
-  global-require: off
-  arrow-parens: off
-  react-hooks/rules-of-hooks: error
-  react-hooks/exhaustive-deps: warn
-  react/jsx-filename-extension: off
   react/prop-types: off
-  semi:
-    - warn
-    - never
-  quotes: single
+  indent: ['error', 2, { 'ignoredNodes': ['JSXElement'] }]
+  comma-dangle: off
