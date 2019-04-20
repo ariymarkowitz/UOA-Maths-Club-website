@@ -1,33 +1,26 @@
 {
-  "name": "rexpack",
+  "name": "polygon-website",
   "version": "1.0.0",
-  "description": "Expack is the bare-bones Express and Webpack boilerplate with ES6+ babel transpilation, ESLint linting, Hot Module Reloading, and Jest test framework enabled.",
+  "description": "The UOA Maths club website",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "coverage": "jest --coverage",
     "buildDev": "rm -rf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
     "buildProd": "rm -rf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
     "start": "node ./dist/server.js"
   },
-  "repository": "https://github.com/bengrunfeld/rexpack",
+  "repository": "https://github.com/ariymarkowitz/UOA-Maths-Club-website",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
+    "node-datetime": "^2.1.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-particles-js": "^2.6.0"
   },
   "engines": {
     "node": ">=4.3.2"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
-      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
-    }
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
@@ -39,8 +32,6 @@
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
     "css-loader": "^2.1.1",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.12.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-loader": "^2.1.2",
@@ -50,10 +41,8 @@
     "file-loader": "^3.0.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
-    "jest": "^24.7.1",
     "json-loader": "^0.5.7",
     "mini-css-extract-plugin": "^0.6.0",
-    "node-datetime": "^2.1.2",
     "node-sass": "^4.11.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "sass-loader": "^7.1.0",
