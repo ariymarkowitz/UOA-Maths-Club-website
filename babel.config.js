@@ -7,7 +7,7 @@ module.exports = (api) => {
   ];
   const plugins = [
     '@babel/plugin-syntax-dynamic-import',
-    ['@babel/plugin-proposal-pipeline-operator', { proposal: 'minimal' }]
+    ['@babel/plugin-proposal-pipeline-operator', { proposal: 'smart' }]
   ];
   return { presets, plugins };
 };

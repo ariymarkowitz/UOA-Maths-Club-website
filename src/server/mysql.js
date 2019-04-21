@@ -1,20 +1,11 @@
-import mysql from 'async-mysql';
+import mysql from 'mysql2';
 import databaseInfo from '../secret/database-info.yaml';
 
-const connection = null;
-
-async function connect() {
-  if (connection) {
-    return connection;
-  }
-
-  return mysql.connect(databaseInfo);
-}
+const pool = mysql.createPool({ ...databaseInfo }).promise();
 
 async function getPuzzles() {
-  const conn = await connect();
-  const rows = await conn.query(`SELECT * FROM puzzles`);
-  return rows;
+  const [results] = await pool.query(`SELECT * FROM puzzles`);
+  return results;
 }
 
 export default getPuzzles;

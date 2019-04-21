@@ -20,6 +20,8 @@ app.use(
 
 app.use(webpackHotMiddleware(compiler));
 
+serverCommon(app);
+
 app.get('*', (req, res, next) => {
   const fs = compiler.outputFileSystem;
   if (fs.existsSync(HTML_FILE)) {
@@ -35,8 +37,6 @@ app.get('*', (req, res, next) => {
     return next();
   }
 });
-
-serverCommon(app);
 
 const PORT = process.env.PORT || 8080;
 

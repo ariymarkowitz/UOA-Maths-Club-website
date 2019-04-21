@@ -37,6 +37,10 @@ module.exports = (env, argv) => {
           use: {
             loader: 'babel-loader'
           }
+        },
+        {
+          test: /\.yaml$/,
+          use: ['json-loader', 'yaml-loader']
         }
       ]
     }
