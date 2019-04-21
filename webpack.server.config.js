@@ -7,9 +7,19 @@
  */
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const WebpackShellPlugin = require('webpack-shell-plugin');
 
 module.exports = (env, argv) => {
   const SERVER_PATH = argv.mode === 'production' ? './src/server/server-prod.js' : './src/server/server-dev.js';
+
+  const plugins = [];
+  if (argv.mode !== 'production') {
+    plugins.push(
+      new WebpackShellPlugin({
+        onBuildEnd: ['npm run postWatch']
+      })
+    );
+  }
 
   return {
     entry: {
@@ -43,7 +53,8 @@ module.exports = (env, argv) => {
           use: ['json-loader', 'yaml-loader']
         }
       ]
-    }
+    },
+    plugins
   };
 };
 

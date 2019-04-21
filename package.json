@@ -4,9 +4,11 @@
   "description": "The UOA Maths club website",
   "main": "index.js",
   "scripts": {
-    "buildDev": "rm -rf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
-    "buildProd": "rm -rf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
-    "start": "node ./dist/server.js"
+    "clean": "rm -rf dist",
+    "dev": "npm run clean && webpack --mode development --config webpack.server.config.js --watch",
+    "build": "npm run clean && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
+    "start": "./dist/server.js",
+    "postWatch": "webpack --mode development --config webpack.dev.config.js && nodemon --watch ./dist/server.js ./dist/server.js localhost 8080"
   },
   "repository": "https://github.com/ariymarkowitz/UOA-Maths-Club-website",
   "keywords": [],
@@ -39,6 +41,7 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
+    "concurrently": "^4.1.0",
     "css-loader": "^2.1.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
@@ -52,6 +55,7 @@
     "json-loader": "^0.5.7",
     "mini-css-extract-plugin": "^0.6.0",
     "node-sass": "^4.11.0",
+    "nodemon": "^1.18.11",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
@@ -62,6 +66,7 @@
     "webpack-dev-middleware": "^3.6.2",
     "webpack-hot-middleware": "^2.24.3",
     "webpack-node-externals": "^1.7.2",
+    "webpack-shell-plugin": "^0.5.0",
     "yaml-loader": "^0.5.0"
   }
 }
