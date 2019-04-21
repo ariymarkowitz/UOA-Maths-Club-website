@@ -26,3 +26,9 @@ rules:
     - warn
     - argsIgnorePattern: res|req|next|^_
   import/no-extraneous-dependencies: off
+  consistent-return: off
+  quotes:
+    - error
+    - single
+    - avoidEscape: true
+      allowTemplateLiterals: true
