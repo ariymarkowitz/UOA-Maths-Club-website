@@ -13,9 +13,13 @@ const Reveal = ({ backgroundElement, children }) => {
           { src: 'plugin/markdown/marked.js' },
           { src: 'plugin/markdown/markdown.js' },
           { src: 'plugin/notes/notes.js', async: true },
-          { src: 'plugin/highlight/highlight.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true }
         ],
+        keyboard: {
+          191: null
+        }
       });
+      RevealModule.sync();
     });
   });
 

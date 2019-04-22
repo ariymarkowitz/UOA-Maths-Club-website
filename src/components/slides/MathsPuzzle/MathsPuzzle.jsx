@@ -1,9 +1,10 @@
 import React from 'react';
 import PuzzleList from './PuzzleList';
+import Editor from './components/Editor';
 
 const MathsPuzzle = () => (
   <section>
-    <PuzzleList />
+    <Editor />
   </section>
 );
 
