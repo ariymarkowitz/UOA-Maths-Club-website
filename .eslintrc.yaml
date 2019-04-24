@@ -24,7 +24,7 @@ rules:
   comma-dangle: off
   no-unused-vars:
     - warn
-    - argsIgnorePattern: res|req|next|^_
+    - argsIgnorePattern: ^res$|^req$|^next$|^_
   import/no-extraneous-dependencies: off
   consistent-return: off
   quotes:
@@ -32,3 +32,6 @@ rules:
     - single
     - avoidEscape: true
       allowTemplateLiterals: true
+  no-underscore-dangle: off
+  import/order: warn
+  object-curly-spacing: warn

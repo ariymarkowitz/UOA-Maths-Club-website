@@ -8,7 +8,7 @@ module.exports = (api) => {
   const plugins = [
     '@babel/plugin-syntax-dynamic-import',
     ['@babel/plugin-proposal-pipeline-operator', { proposal: 'minimal' }],
-    'styled-jsx/babel'
+    '@babel/plugin-proposal-optional-chaining'
   ];
   return { presets, plugins };
 };

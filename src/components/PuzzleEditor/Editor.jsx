@@ -5,12 +5,12 @@ import Page from '../Page';
 
 export default function () {
   const [title, setTitle] = useState('');
-  const [question, setQuestion] = useState('');
+  const [content, setContent] = useState('');
 
   return (
     <Page>
-      <Input titleHook={[title, setTitle]} questionHook={[question, setQuestion]} />
-      <Preview title={title} question={question} />
+      <Input titleHook={[title, setTitle]} contentHook={[content, setContent]} />
+      <Preview title={title} content={content} />
     </Page>
   );
 }

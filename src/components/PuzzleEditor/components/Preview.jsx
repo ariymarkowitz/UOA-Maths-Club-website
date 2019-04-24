@@ -8,10 +8,10 @@ import html from 'remark-html';
 const processor = remark()
   .use(math)
   .use(katex)
-  .use(html, { sanitize: true });
+  .use(html);
 
-function Preview({ title, question, ...props }) {
-  const [questionHTML, setQuestionHTML] = useState('');
+function Preview({ title, content, ...props }) {
+  const [contentHTML, setContentHTML] = useState('');
 
   async function parse(text) {
     const result = await processor.process(text);
@@ -19,15 +19,15 @@ function Preview({ title, question, ...props }) {
   }
 
   useEffect(() => {
-    parse(question).then((result) => {
-      setQuestionHTML(result);
+    parse(content).then((result) => {
+      setContentHTML(result);
     });
-  }, [question]);
+  }, [content]);
 
   return (
     <div {...props}>
       <h3>{title}</h3>
-      <div dangerouslySetInnerHTML={{ __html: questionHTML }} />
+      <div dangerouslySetInnerHTML={{ __html: contentHTML }} />
     </div>
   );
 }
