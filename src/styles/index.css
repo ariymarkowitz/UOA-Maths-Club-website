@@ -8,25 +8,45 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.page {
+/* PAGE TRANSITIONS */
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    animation-timing-function: ease-out;
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    animation-timing-function: linear;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fullsize {
   height: 100vh;
   overflow-y: auto;
   position: fixed;
   top: 0;
   width: 100%;
   -webkit-overflow-scrolling: touch;
-  transition: transform 700ms ease-out, opacity 500ms;
 }
 
-.page-enter {
-  transform: translate(100%, 0);
+.page-revealed {
+  animation: slide-in 500ms forwards;
 }
 
-.page-enter-active,
-.page-enter-done {
-  transform: translate(0, 0);
+.page-hidden {
+  animation: fade-out 500ms forwards;
 }
 
-.page-exit {
-  opacity: 0;
+.page-initial-hidden {
+  display: none;
 }

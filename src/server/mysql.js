@@ -8,10 +8,10 @@ export async function getPuzzles() {
   return results;
 }
 
-export async function addPuzzle(title, question) {
-  const command = 'INSERT into `puzzles` (title, question) VALUES (?, ?)';
+export async function addPuzzle(title, question, solution) {
+  const command = 'INSERT into `puzzles` (title, question, solution) VALUES (?, ?, ?)';
   try {
-    return await pool.execute(command, [title, question]);
+    return await pool.execute(command, [title, question, solution]);
   } catch (e) {
     throw e;
   }

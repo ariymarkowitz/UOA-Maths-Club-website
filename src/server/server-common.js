@@ -20,10 +20,8 @@ export default (app) => {
 
   apiRouter.post('/api/addPuzzle', upload.none(), ({ body }, res) => {
     if (!passwordHash.verify(body.password, Admin.passwordHash)) {
-      //
       res.json({ status: 'error', message: 'Invalid password' });
     } else {
-      console.log(body);
       addPuzzle(body.title, body.content)
         .catch(error => res.json({ status: 'error', message: error.message }))
         .then(() => res.json({ status: 'success' }));

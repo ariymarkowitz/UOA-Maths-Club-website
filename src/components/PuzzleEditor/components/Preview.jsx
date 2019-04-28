@@ -10,24 +10,35 @@ const processor = remark()
   .use(katex)
   .use(html);
 
-function Preview({ title, content, ...props }) {
-  const [contentHTML, setContentHTML] = useState('');
+async function parse(text) {
+  const result = await processor.process(text);
+  return result.toString();
+}
 
-  async function parse(text) {
-    const result = await processor.process(text);
-    return result.toString();
-  }
+const useParser = (textState) => {
+  const [parsedText, setParsedText] = useState('');
 
   useEffect(() => {
-    parse(content).then((result) => {
-      setContentHTML(result);
+    parse(textState).then((result) => {
+      setParsedText(result);
     });
-  }, [content]);
+  }, [textState]);
+
+  return [parsedText, setParsedText];
+};
+
+function Preview({
+  title, content, solution, ...props
+}) {
+  const [parsedTitle, setParsedTitle] = useParser(title);
+  const [parsedQuestion, setParsedQuestion] = useParser(content);
+  const [parsedSolution, setParsedSolution] = useParser(solution);
 
   return (
     <div {...props}>
-      <h3>{title}</h3>
-      <div dangerouslySetInnerHTML={{ __html: contentHTML }} />
+      <h3 dangerouslySetInnerHTML={{ __html: parsedTitle }} />
+      <div dangerouslySetInnerHTML={{ __html: parsedQuestion }} />
+      <div dangerouslySetInnerHTML={{ __html: parsedSolution }} />
     </div>
   );
 }

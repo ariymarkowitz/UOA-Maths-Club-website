@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import Preview from './components/Preview';
 import Input from './components/Input';
-import Page from '../Page';
 
 export default function () {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [solution, setSolution] = useState('');
 
   return (
-    <Page>
-      <Input titleHook={[title, setTitle]} contentHook={[content, setContent]} />
-      <Preview title={title} content={content} />
-    </Page>
+    <div>
+      <Input
+        titleHook={[title, setTitle]}
+        contentHook={[content, setContent]}
+        solutionHook={[solution, setSolution]}
+      />
+      <Preview title={title} content={content} solution={solution} />
+    </div>
   );
 }
