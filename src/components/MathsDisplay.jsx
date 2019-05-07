@@ -4,7 +4,6 @@ import remark from 'remark';
 import math from 'remark-math';
 import katex from 'remark-html-katex';
 import html from 'remark-html';
-import MathsDisplay from '../../MathsDisplay';
 
 const processor = remark()
   .use(math)
@@ -16,30 +15,21 @@ async function parse(text) {
   return result.toString();
 }
 
-const useParser = (textState) => {
+const useParser = (text) => {
   const [parsedText, setParsedText] = useState('');
 
   useEffect(() => {
-    parse(textState).then((result) => {
+    parse(text).then((result) => {
       setParsedText(result);
     });
-  }, [textState]);
+  }, [text]);
 
   return parsedText;
 };
 
-function Preview({
-  title, content, solution, ...props
-}) {
-  const parsedTitle = useParser(title);
+const MathsDisplay = ({ text }) => {
+  const parsedText = useParser(text);
+  return <div dangerouslySetInnerHTML={{ __html: parsedText }} />;
+};
 
-  return (
-    <div {...props}>
-      <h3 dangerouslySetInnerHTML={{ __html: parsedTitle }} />
-      <MathsDisplay text={content} />
-      <MathsDisplay text={solution} />
-    </div>
-  );
-}
-
-export default Preview;
+export default MathsDisplay;

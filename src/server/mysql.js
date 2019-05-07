@@ -4,8 +4,14 @@ import databaseInfo from '../secret/database-info.yaml';
 const pool = mysql.createPool({ ...databaseInfo }).promise();
 
 export async function getPuzzles() {
-  const [results] = await pool.query(`SELECT * FROM puzzles`);
-  return results;
+  try {
+    const [results] = await pool.query(
+      'SELECT title, question FROM puzzles where `display-date` < NOW()'
+    );
+    return results;
+  } catch (e) {
+    throw e;
+  }
 }
 
 export async function addPuzzle(title, question, solution) {

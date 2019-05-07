@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Presentation from './presentation/Presentation';
 import Attendance from './presentation/Attendance';
 import FrontPage from './presentation/FrontPage';
+import MathsPuzzle from './MathsPuzzle/MathsPuzzle';
 import Editor from './PuzzleEditor/Editor';
 import particleSettings from '../settings/particles.yaml';
 import '../styles/index.css';
@@ -22,16 +23,20 @@ function App() {
       />
       <div className="fullsize">
         <Switch>
-          <Route exact path="/edit" render={() => <Editor />} />
           <Route
             exact
             path="/"
             render={() => (
               <Presentation
-                pages={[['front-page', <FrontPage />], ['attendance', <Attendance />]]}
+                pages={[
+                  ['front-page', <FrontPage />],
+                  ['attendance', <Attendance />],
+                  ['puzzles', <MathsPuzzle />]
+                ]}
               />
             )}
           />
+          <Route exact path="/edit" render={() => <Editor />} />
         </Switch>
       </div>
     </BrowserRouter>
