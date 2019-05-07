@@ -6,7 +6,7 @@ const pool = mysql.createPool({ ...databaseInfo }).promise();
 export async function getPuzzles() {
   try {
     const [results] = await pool.query(
-      'SELECT title, question FROM puzzles where `display-date` < NOW()'
+      'SELECT title, question FROM puzzles where `display-date` < (NOW() - INTERVAL 17 HOUR) LIMIT 1'
     );
     return results;
   } catch (e) {
