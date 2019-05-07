@@ -7,9 +7,8 @@ particles:
     type: circle
     stroke:
       width: 0
-      color: '#000000'
   opacity:
-    value: 0.5
+    value: 0.7
     anim:
       enable: false
     random: true
@@ -19,7 +18,7 @@ particles:
     enable: true
     distance: 200
     color: '#0066aa'
-    opacity: 0.4
+    opacity: 0.5
     width: 1
   move:
     enable: true

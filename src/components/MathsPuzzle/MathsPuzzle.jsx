@@ -4,18 +4,12 @@ import remark from 'remark';
 import math from 'remark-math';
 import katex from 'remark-html-katex';
 import html from 'remark-html';
-import Page from '../Page';
 import MathsDisplay from '../MathsDisplay';
 
 const processor = remark()
   .use(math)
   .use(katex)
   .use(html);
-
-async function parse(text) {
-  const result = await processor.process(text);
-  return result.toString();
-}
 
 const MathsPuzzle = () => {
   const [question, setQuestion] = useState('');
@@ -46,11 +40,11 @@ const MathsPuzzle = () => {
   else content = <div>No data found!</div>;
 
   return (
-    <Page>
-      <h3>Puzzle of the Week</h3>
+    <>
+      <h2>Puzzle of the Week</h2>
       <hr />
       {content}
-    </Page>
+    </>
   );
 };
 

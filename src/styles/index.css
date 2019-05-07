@@ -1,12 +1,5 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,400');
+@import url('https://fonts.googleapis.com/css?family=Merriweather:300,400,700');
 
 /* PAGE TRANSITIONS */
 
@@ -30,17 +23,61 @@ body {
   }
 }
 
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-family: 'Merriweather', serif;
+  font-weight: 300;
+  font-size: 48px;
+
+  background: rgb(251, 251, 255);
+  background: radial-gradient(
+    circle,
+    rgb(251, 251, 255) 0%,
+    rgb(206, 250, 255) 50%,
+    rgb(164, 218, 242) 100%
+  );
+}
+
+h1 {
+  font-size: 96px;
+  font-weight: 300;
+}
+
 .fullsize {
+  width: 100%;
   height: 100vh;
-  overflow-y: auto;
+
   position: fixed;
   top: 0;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.page {
+  position: absolute;
+
+  box-sizing: border-box;
+  padding: 50px;
+
   width: 100%;
-  -webkit-overflow-scrolling: touch;
 }
 
 .page-revealed {
-  animation: slide-in 500ms forwards;
+  animation: slide-in 700ms forwards;
 }
 
 .page-hidden {
@@ -49,4 +86,9 @@ body {
 
 .page-initial-hidden {
   display: none;
+}
+
+.page-hidden,
+.page-initial-hidden {
+  z-index: -1;
 }
