@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
+import useInterval from '../../lib/utils/useInterval';
+import useEventHandler from '../../lib/utils/useEventHandler';
 
-const mod = n => x => ((x % n) + n) % n;
+const mod = (x, n) => ((x % n) + n) % n;
 
 const indexFromKey = (list, key) => list.findIndex(([k]) => k === key);
 const formatTarget = (list, t) => {
@@ -16,7 +18,7 @@ const formatTarget = (list, t) => {
     throw TypeError('Property `target` must be a string or integer.');
   }
 
-  return f |> mod(list.length);
+  return mod(f, list.length);
 };
 
 const Page = ({ children, revealed }) => {
@@ -50,23 +52,19 @@ const Presentation = ({ pages, target }) => {
   const [pageReq, _setPageReq] = useState(page);
 
   const requestPage = (req) => {
-    if (req !== pageReq) _setPageReq(req);
+    if (req !== pageReq) _setPageReq(mod(req, pages.length));
   };
 
-  const requestPrevPage = () => requestPage(page - 1 |> mod(pages.length));
-  const requestNextPage = () => requestPage(page + 1 |> mod(pages.length));
+  const requestPrevPage = () => requestPage(page - 1);
+  const requestNextPage = () => requestPage(page + 1);
 
   const onKeyDown = (e) => {
     if (e.key === 'ArrowLeft') requestPrevPage();
     else if (e.key === 'ArrowRight') requestNextPage();
   };
 
-  // Change page using the arrow keys
-  useEffect(() => {
-    document.addEventListener('keydown', onKeyDown);
-
-    return () => document.removeEventListener('keydown', onKeyDown);
-  }, [pages, page]);
+  useEventHandler(document, 'keydown', onKeyDown);
+  useInterval(requestNextPage, 10000);
 
   // Handle changes in `pages`
   useEffect(() => {
