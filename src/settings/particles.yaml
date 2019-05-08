@@ -1,6 +1,6 @@
 particles:
   number:
-    value: 80
+    value: 150
   color:
     value: '#0066aa'
   shape:
@@ -16,7 +16,7 @@ particles:
     value: 2
   line_linked:
     enable: true
-    distance: 200
+    distance: 150
     color: '#0066aa'
     opacity: 0.5
     width: 1

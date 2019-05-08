@@ -5,8 +5,8 @@
 
 @keyframes slide-in {
   from {
-    transform: translateX(100%);
     animation-timing-function: ease-out;
+    transform: translateX(100%);
   }
   to {
     transform: translateX(0);
@@ -15,11 +15,13 @@
 
 @keyframes fade-out {
   from {
+    animation-timing-function: ease-in;
     opacity: 1;
-    animation-timing-function: linear;
+    transform: perspective(500px) translateX(0) translateZ(0);
   }
   to {
     opacity: 0;
+    transform: perspective(500px) translateX(-30%) translateZ(-100px);
   }
 }
 
