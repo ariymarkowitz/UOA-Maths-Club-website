@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import useInterval from '../../lib/utils/useInterval';
 import useEventHandler from '../../lib/utils/useEventHandler';
@@ -52,8 +52,6 @@ const Presentation = ({
 }) => {
   const [page, setPage] = useState(formatTarget(pages, target));
 
-  useReducer();
-
   const [pageReq, _setPageReq] = useState(page);
 
   const requestPage = (req) => {
@@ -63,13 +61,19 @@ const Presentation = ({
   const requestPrevPage = () => requestPage(mod(page - 1, pages.length));
   const requestNextPage = () => requestPage(mod(page + 1, pages.length));
 
+  const dispatch = useInterval(requestNextPage, 10000);
+
   const onKeyDown = (e) => {
-    if (e.key === 'ArrowLeft') requestPrevPage();
-    else if (e.key === 'ArrowRight') requestNextPage();
+    if (e.key === 'ArrowLeft') {
+      dispatch({ type: 'restart' });
+      requestPrevPage();
+    } else if (e.key === 'ArrowRight') {
+      dispatch({ type: 'restart' });
+      requestNextPage();
+    }
   };
 
   useEventHandler(document, 'keydown', onKeyDown);
-  useInterval(requestNextPage, 10000);
 
   // Handle changes in `pages`
   useEffect(() => {
