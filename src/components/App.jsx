@@ -12,15 +12,6 @@ import '../styles/index.css';
 function App() {
   return (
     <BrowserRouter forceRefresh={false}>
-      <Particles
-        className="background"
-        style={{
-          width: '100%',
-          height: '100%',
-          position: 'absolute'
-        }}
-        params={particleSettings}
-      />
       <div className="fullsize">
         <Switch>
           <Route
@@ -28,6 +19,8 @@ function App() {
             path="/"
             render={() => (
               <Presentation
+                background={<Particles params={particleSettings} />}
+                parallax={0.05}
                 pages={[
                   ['front-page', <FrontPage />],
                   ['attendance', <Attendance />],

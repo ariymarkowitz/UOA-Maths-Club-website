@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import classNames from 'classnames';
 import useInterval from '../../lib/utils/useInterval';
 import useEventHandler from '../../lib/utils/useEventHandler';
@@ -47,16 +47,21 @@ const Page = ({ children, revealed }) => {
   );
 };
 
-const Presentation = ({ pages, target }) => {
+const Presentation = ({
+  background, parallax = 0, pages, target
+}) => {
   const [page, setPage] = useState(formatTarget(pages, target));
+
+  useReducer();
+
   const [pageReq, _setPageReq] = useState(page);
 
   const requestPage = (req) => {
-    if (req !== pageReq) _setPageReq(mod(req, pages.length));
+    if (req !== pageReq) _setPageReq(req);
   };
 
-  const requestPrevPage = () => requestPage(page - 1);
-  const requestNextPage = () => requestPage(page + 1);
+  const requestPrevPage = () => requestPage(mod(page - 1, pages.length));
+  const requestNextPage = () => requestPage(mod(page + 1, pages.length));
 
   const onKeyDown = (e) => {
     if (e.key === 'ArrowLeft') requestPrevPage();
@@ -78,8 +83,17 @@ const Presentation = ({ pages, target }) => {
     }
   }, [pageReq]);
 
+  const width = 1 + parallax * (pages.length - 1);
+  const translation = -(parallax * page);
+
   return (
     <>
+      <div
+        className="background"
+        style={{ width: `${width * 100}%`, transform: `translateX(${translation * 100}%)` }}
+      >
+        {background}
+      </div>
       {pages.map(([key, Component], index) => (
         <Page key={key} revealed={page === index}>
           {Component}
