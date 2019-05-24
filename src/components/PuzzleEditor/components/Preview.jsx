@@ -5,6 +5,7 @@ import math from 'remark-math';
 import katex from 'remark-html-katex';
 import html from 'remark-html';
 import MathsDisplay from '../../MathsDisplay';
+import TextFit from '../../TextFit/TextFit';
 
 const processor = remark()
   .use(math)
@@ -31,13 +32,16 @@ const useParser = (textState) => {
 function Preview({
   title, content, solution, ...props
 }) {
-  const parsedTitle = useParser(title);
-
   return (
     <div {...props}>
-      <h3 dangerouslySetInnerHTML={{ __html: parsedTitle }} />
-      <MathsDisplay text={content} />
-      <MathsDisplay text={solution} />
+      <MathsDisplay className="editor-preview-title" text={`#### ${title}`} />
+      <TextFit className="editor-preview-question">
+        <MathsDisplay text={content} />
+      </TextFit>
+      <hr style={{ width: '100%' }} />
+      <TextFit className="editor-preview-solution">
+        <MathsDisplay text={solution} />
+      </TextFit>
     </div>
   );
 }

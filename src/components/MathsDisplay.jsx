@@ -2,13 +2,17 @@
 import React, { useEffect, useState } from 'react';
 import remark from 'remark';
 import math from 'remark-math';
-import katex from 'remark-html-katex';
-import html from 'remark-html';
+import remark2rehype from 'remark-rehype';
+import katex from 'rehype-katex';
+import stringify from 'rehype-stringify';
+import mathInline from 'remark-math/inline';
 
+// Raw String => MDAST => HAST => transformed HAST => HTML
 const processor = remark()
   .use(math)
+  .use(remark2rehype)
   .use(katex)
-  .use(html);
+  .use(stringify);
 
 async function parse(text) {
   const result = await processor.process(text);
@@ -27,9 +31,9 @@ const useParser = (text) => {
   return parsedText;
 };
 
-const MathsDisplay = ({ text }) => {
+const MathsDisplay = ({ text, ...props }) => {
   const parsedText = useParser(text);
-  return <div dangerouslySetInnerHTML={{ __html: parsedText }} />;
+  return <div dangerouslySetInnerHTML={{ __html: parsedText }} {...props} />;
 };
 
 export default MathsDisplay;

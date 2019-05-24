@@ -8,13 +8,14 @@ export default function () {
   const [solution, setSolution] = useState('');
 
   return (
-    <div>
+    <div className="page editor">
       <Input
         titleHook={[title, setTitle]}
         contentHook={[content, setContent]}
         solutionHook={[solution, setSolution]}
+        className="editor-input"
       />
-      <Preview title={title} content={content} solution={solution} />
+      <Preview title={title} content={content} solution={solution} className="editor-preview" />
     </div>
   );
 }
