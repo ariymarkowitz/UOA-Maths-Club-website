@@ -15,6 +15,7 @@ export async function getPuzzles() {
 }
 
 export async function addPuzzle(title, question, solution) {
+  console.log([title, question, solution]);
   const command = 'INSERT into `puzzles` (title, question, solution) VALUES (?, ?, ?)';
   try {
     return await pool.execute(command, [title, question, solution]);

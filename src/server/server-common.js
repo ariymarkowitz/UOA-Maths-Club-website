@@ -22,7 +22,7 @@ export default (app) => {
     if (!passwordHash.verify(body.password, Admin.passwordHash)) {
       res.json({ status: 'error', message: 'Invalid password' });
     } else {
-      addPuzzle(body.title, body.content)
+      addPuzzle(body.title, body.content, body.solution)
         .catch(error => res.json({ status: 'error', message: error.message }))
         .then(() => res.json({ status: 'success' }));
     }
