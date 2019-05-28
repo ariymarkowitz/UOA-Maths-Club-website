@@ -61,7 +61,7 @@ const Presentation = ({
   const requestPrevPage = () => requestPage(mod(page - 1, pages.length));
   const requestNextPage = () => requestPage(mod(page + 1, pages.length));
 
-  const dispatch = useInterval(requestNextPage, 10000);
+  const dispatch = useInterval(requestNextPage, 20000);
 
   const onKeyDown = (e) => {
     if (e.key === 'ArrowLeft') {

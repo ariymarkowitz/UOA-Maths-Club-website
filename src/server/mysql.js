@@ -6,7 +6,18 @@ const pool = mysql.createPool({ ...databaseInfo }).promise();
 export async function getPuzzles() {
   try {
     const [results] = await pool.query(
-      'SELECT title, question FROM puzzles where `display-date` < (NOW() - INTERVAL 17 HOUR) LIMIT 1'
+      'SELECT title, question FROM puzzles where `display-date` < (NOW() - INTERVAL 17 HOUR) ORDER BY `display-date` DESC LIMIT 1'
+    );
+    return results;
+  } catch (e) {
+    throw e;
+  }
+}
+
+export async function getLastSolution() {
+  try {
+    const [results] = await pool.query(
+      'SELECT title, solution FROM puzzles where `display-date` < (NOW() - INTERVAL 1 DAY) ORDER BY `display-date` DESC LIMIT 1'
     );
     return results;
   } catch (e) {

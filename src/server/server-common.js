@@ -2,7 +2,7 @@ import { Router } from 'express';
 import passwordHash from 'password-hash';
 import multer from 'multer';
 import bodyParser from 'body-parser';
-import { getPuzzles, addPuzzle } from './mysql';
+import { getPuzzles, addPuzzle, getLastSolution } from './mysql';
 import Admin from '../secret/admin.yaml';
 
 const upload = multer();
@@ -14,6 +14,12 @@ export default (app) => {
   const apiRouter = new Router();
   apiRouter.get('/api/puzzles', (req, res) => {
     getPuzzles()
+      .catch(() => res.json({ error: true }))
+      .then(result => res.json(result));
+  });
+
+  apiRouter.get('/api/solution', (req, res) => {
+    getLastSolution()
       .catch(() => res.json({ error: true }))
       .then(result => res.json(result));
   });

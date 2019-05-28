@@ -3,20 +3,20 @@ import Axios from 'axios';
 import MathsDisplay from '../MathsDisplay';
 import TextFit from '../TextFit/TextFit';
 
-const MathsPuzzle = () => {
-  const [question, setQuestion] = useState('');
+const MathsPuzzleSolution = () => {
+  const [solution, setSolution] = useState('');
   const [loading, setLoading] = useState(false);
   const [dataFound, setDataFound] = useState(false);
 
   const fetch = () => {
     setLoading(true);
 
-    Axios.get('/api/puzzles').then(({ data }) => {
+    Axios.get('/api/solution').then(({ data }) => {
       if (data.length === 0) {
         setDataFound(false);
       } else {
         setDataFound(true);
-        setQuestion(data[0].question);
+        setSolution(data[0].solution);
       }
       setLoading(false);
     });
@@ -31,18 +31,18 @@ const MathsPuzzle = () => {
   else if (dataFound) {
     content = (
       <TextFit>
-        <MathsDisplay text={question} />
+        <MathsDisplay text={solution} />
       </TextFit>
     );
   } else content = <div>No data found!</div>;
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <h2>Puzzle of the Week</h2>
-      <hr style={{ width: '100%' }} />
+    <>
+      <h2>Solution to last week&#39;s puzzle</h2>
+      <hr />
       {content}
-    </div>
+    </>
   );
 };
 
-export default MathsPuzzle;
+export default MathsPuzzleSolution;

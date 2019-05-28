@@ -8,6 +8,7 @@ import MathsPuzzle from './MathsPuzzle/MathsPuzzle';
 import Editor from './PuzzleEditor/Editor';
 import particleSettings from '../settings/particles.yaml';
 import '../styles/index.css';
+import MathsPuzzleSolution from './MathsPuzzle/MathsPuzzleSolution';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
                 pages={[
                   ['front-page', <FrontPage />],
                   ['attendance', <Attendance />],
+                  ['solution', <MathsPuzzleSolution />],
                   ['puzzles', <MathsPuzzle />]
                 ]}
               />

@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 function TextFit({ className, children, ...props }) {
@@ -10,7 +10,7 @@ function TextFit({ className, children, ...props }) {
   const minScale = 0.2;
   const [fontScale, setFontScale] = useState(steps);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!container) {
       return;
     }
