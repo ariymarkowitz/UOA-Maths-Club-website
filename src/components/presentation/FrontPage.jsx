@@ -10,7 +10,7 @@ function FrontPage() {
 
   return (
     <>
-      <h1>Welcome to Polygon!</h1>
+      <h1>Welcome to the Maths Club!</h1>
       <p className="subtitle">{formatDate(date)}</p>
     </>
   );
